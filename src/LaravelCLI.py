@@ -40,6 +40,11 @@ class LaravelCLI():
         self.route = "php /home/" + self.usuario + "/" + self.route + "/artisan"
         #subprocess.Popen("php /home/" + self.usuario + "/" + self.route + "/artisan --version | grep 'Laravel Framework' | awk '{print $3}'", shell=True).wait()
         os.system(self.route + " --version | grep 'Laravel Framework' | awk '{print $3}'")
+        res = input("Desea crear migraciones, modelos y controladores? Y/N: ")
+        if (res == 'Y'):
+            self.createData()
+        else:
+            exit(0)
 
     def createData(self):
         self.data = input("Entidad: ")
@@ -49,7 +54,8 @@ class LaravelCLI():
         res = input("Desea crear mas entidades? Y/N=> ")
         if (res == 'Y'):
             self.createData()
-        exit(0)
+        else:
+            exit(0)
 
 if __name__ == '__main__':
     lc = LaravelCLI()
